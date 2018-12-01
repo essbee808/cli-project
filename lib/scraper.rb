@@ -1,7 +1,5 @@
 require 'open-uri'
 require 'pry'
-require_relative "../cli/job.rb"
-require_relative "../cli/command_line_interface.rb"
 
 class Scraper
   
