@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+    #=> tells the shell which interpreter to use to execute the remainder of the file.
 
 require "bundler/setup"
 require "cli/project"

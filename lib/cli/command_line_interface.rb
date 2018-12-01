@@ -1,4 +1,8 @@
-# ask user for zipcode
+#prompt user to start program
+  #Would you like to find a job? (Y/N)
+
+# prompt user for zipcode
+  #Great! Please enter your 5 digit zipcode:
 
 # user types zipcode
 
