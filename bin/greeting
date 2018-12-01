@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative ../lib/cli/job.rb
+require_relative '../lib/cli/job.rb'
+require_relative '../lib/cli/job.rb'
+require_relative '../lib/scraper.rb'
 
 // Greets user
 puts "Hi! Welcome to Operation: Find A Job. Are you ready to get started? (Y/N)
