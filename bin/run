@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/command_line_interface.rb'
+
+puts "Hi! Welcome to Operation: Find A Job. Are you ready to get started? (Y/N)
+
+

@@ -1,3 +1,40 @@
+require_relative '../lib/job.rb'
+require_relative '../lib/scraper.rb'
+require 'nokogiri'
+
+class CommandLineInterface
+  
+  BASE_PATH = #indeed website + user input?
+  
+  def run
+    
+  end
+  
+  
+  
+  def make_jobs
+  
+  end
+  
+  
+  
+  def add_attributes_to_jobs
+  
+  end
+  
+  
+  
+  def display_jobs
+  
+  end
+  
+  
+  
+  
+end
+
+# Capture user's input
+
 #prompt user to start program
   #Would you like to find a job? (Y/N)
 
