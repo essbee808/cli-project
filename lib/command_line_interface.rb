@@ -4,21 +4,11 @@ require 'nokogiri'
 require 'pry'
 
 class CommandLineInterface
-  puts "Hello World"
-end
-
+  puts "Hello there! Welcome to Operation: Find A Job."
+  puts "Please enter your 5 digit zipcode:"
+  input = gets.strip
   
-#   def greeting
-#     puts "Hello there! Welcome to Operation: Find A Job. Please enter your 5 digit zipcode:"
-#   binding.pry
-#     zipcode = gets.strip
-    
-#     if zipcode == [0-9][0-9][0-9][0-9][0-9]
-#       puts "Great! Here are the first 5 jobs for #{zipcode}:"
-#     else
-#       puts "Sorry, that zipcode does not exist. Enter your 5 digit zipcode:"
-#     end
-#   end
+end
   
 #   def run
 #     greeting
