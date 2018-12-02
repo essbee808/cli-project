@@ -18,24 +18,22 @@ class CommandLineInterface
   
   def gets_input
     input = gets.strip
-    
+
     if /\d{5}/.match(input)
-      puts "Great! Here are some jobs for #{input}:"
+      puts "Great! Here's what we found for #{input}:"
     else
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
       gets_input
     end
   end
+  
+  def make_jobs
+    #use scraper method
+  end
 
 end
   
-  
-  
-#   def make_jobs
-  
-#   end
-  
-  
+
   
 #   def add_attributes_to_jobs
   
