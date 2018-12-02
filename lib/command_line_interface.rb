@@ -4,10 +4,16 @@ require 'nokogiri'
 require 'pry'
 
 class CommandLineInterface
-  puts "Hello there! Welcome to Operation: Find A Job."
+  puts "Hello there! Welcome to the Find A Job Command Line Interface."
   puts "Please enter your 5 digit zipcode:"
   input = gets.strip
   
+    if /\d{5}/.match(input)
+      puts "Great! Here are some jobs for #{input}:"
+    else
+      puts "I don't know what that is. Please enter your 5 digit zipcode:"
+    end
+    
 end
   
 #   def run
