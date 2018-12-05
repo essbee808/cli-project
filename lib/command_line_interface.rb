@@ -20,7 +20,9 @@ class CommandLineInterface
     input = gets.strip
 
     if /^[0-9]{5}$/.match(input)
-      puts "Great! Here's what we found for #{input}:"
+      puts "Great! We're still working on extracting data from Indeed. While you wait, please enjoy this cute cat"
+      puts "
+     
     else
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
       gets_input
