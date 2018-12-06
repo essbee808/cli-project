@@ -3,7 +3,7 @@ require_relative "../lib/command_line_interface.rb"
 require 'pry'
 
 class Job
-  attr_accessor :title, :company, :wage
+  attr_accessor :title, :company, :wage, :url
   
   @@all = []
   
