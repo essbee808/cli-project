@@ -16,3 +16,12 @@ spec/ || test/
 
 Gemfile
   used by Bundler to manage gem dependencies
+  
+
+
+// Gems
+Open-uri
+  access website
+  
+Nokogiri
+  used to parse XML/HTML
