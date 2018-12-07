@@ -12,7 +12,7 @@ class CommandLineInterface
   end
   
   def greeting
-    puts "Hello there! Welcome to the Find A Job Command Line Interface."
+    puts "Hello there! Welcome to Indeed Scraper Command Line Interface."
     puts "Please enter your 5 digit zipcode:"
   end
   
@@ -20,7 +20,7 @@ class CommandLineInterface
     input = gets.strip
 
     if /^[0-9]{5}$/.match(input)
-      puts "Great! Here's what we found for #{input}: "
+      puts "Great! Here are some awesome jobs that we found for #{input}: "
      
     else
       puts "I don't know what that is. Please enter your 5 digit zipcode:"

@@ -4,8 +4,6 @@ require 'pry'
 
 class Scraper
   
-  
-  
   def get_page
     html = open('https://www.indeed.com/jobs?q=&l=' + input)
     parsed_page = Nokogiri::HTML(html)

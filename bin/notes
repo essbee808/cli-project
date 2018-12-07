@@ -15,4 +15,4 @@ spec/ || test/
   tests that check to see if code is behaving as desired
 
 Gemfile
-  used by Bundler t
+  used by Bundler to manage gem dependencies
