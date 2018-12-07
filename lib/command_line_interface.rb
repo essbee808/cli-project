@@ -26,6 +26,7 @@ class CommandLineInterface
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
       gets_input
     end
+    input
   end
   
   def make_jobs
