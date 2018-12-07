@@ -1,0 +1,18 @@
+bin/
+  code that relates to running the program
+  executable files
+
+config/
+  code needed to initialize the environment
+  i.e. file requirements, connections to database, access to test suite, etc.
+  
+lib/
+  code that defines what the program does
+  "Meat"
+  classes, methods, etc.
+
+spec/ || test/
+  tests that check to see if code is behaving as desired
+
+Gemfile
+  used by Bundler t
