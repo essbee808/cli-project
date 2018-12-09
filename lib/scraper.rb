@@ -4,6 +4,7 @@ require 'nokogiri'
 require 'pry'
 
 class Scraper
+  
 
   def self.scrape_index_page(input)
     html = open("https://www.indeed.com/l-#{input}-jobs.html") # interpolate input
@@ -12,11 +13,16 @@ class Scraper
     all_jobs
   
     all_jobs.collect do |job_card|
-      binding.pry
+      #binding.pry
       job = {
-        :title => job_card.css('a').attr('title').value
+        :title => job_card.css('a').attr('title').value,
+        :job_url =>
       }
       job
     end
+    
+  def self.scrape_job_post(job_url)
+      html = open(job_url)
+      
   end
 end
