@@ -30,7 +30,7 @@ class CommandLineInterface
   end
   
   def make_jobs
-    #use scraper method
+    Scraper.scrape_index_page
   end
 
 end
