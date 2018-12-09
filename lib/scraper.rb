@@ -15,6 +15,13 @@ class Scraper
   def self.scrape_index_page
     get_page
     all_jobs = parsed_page.css('div.jobsearch-SerpJobCard') #=> look up CSS selector for job
+    
+    all_jobs.collect do |job_card|
+      
+      job = {
+        
+      }
+    end
   end
   
 end
