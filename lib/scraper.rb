@@ -11,17 +11,13 @@ class Scraper
     all_jobs = parsed_page.css('div.jobsearch-SerpJobCard')
     all_jobs
   
-       
-    # all_jobs.collect do |job_card|
-      
-    #   job = {
-    #     :title = job_card.css('a.jobtitle').text,
-    #     # :company
-    #     # :wage
-    #     # :url
-    #   }
-    #   job
-    
+    all_jobs.collect do |job_card|
+      binding.pry
+      job = {
+        :title = job_card.css('a').attr('title').value,
+        
+      }
+      job
   end
   
 end
