@@ -8,7 +8,8 @@ class CommandLineInterface
   def run_program
     greeting
     gets_input
-    #make_jobs
+    make_jobs
+    display_jobs
   end
   
   def greeting
@@ -30,7 +31,12 @@ class CommandLineInterface
   end
   
   def make_jobs
-    Scraper.scrape_index_page
+    jobs_array = Scraper.scrape_index_page(input)
+    Job.create_from_collection(jobs_array)
+  end
+  
+  def display_jobs  
+    
   end
 
 end

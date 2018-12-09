@@ -14,10 +14,9 @@ class Scraper
     all_jobs.collect do |job_card|
       binding.pry
       job = {
-        :title = job_card.css('a').attr('title').value,
-        
+        :title => job_card.css('a').attr('title').value
       }
       job
+    end
   end
-  
 end
