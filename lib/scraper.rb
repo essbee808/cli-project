@@ -18,6 +18,7 @@ class Scraper
         :title => job_card.css('a').attr('title').value,
         :job_url => job_card.css('a').attr('href').value
       }
+    end
       job
     end
     
