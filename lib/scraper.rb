@@ -17,6 +17,7 @@ class Scraper
       job = {
         :title => job_card.css('a').attr('title').value,
         :job_url => job_card.css('a').attr('href').value
+        :company => job_card.css('span.company').text
       }
     end
       job
@@ -24,6 +25,8 @@ class Scraper
     
   def self.scrape_job_post(job_url)
       html = open(job_url)
+      
+      #:description => job_card.css('span')
       
   end
 end
