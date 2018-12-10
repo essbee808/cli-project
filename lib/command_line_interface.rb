@@ -32,9 +32,8 @@ class CommandLineInterface
   
   def make_jobs
     gets_input
-    binding.pry
-    jobs_array = Scraper.scrape_index_page(@input)
-    Job.create_from_collection(jobs_array)
+    @jobs_array = Scraper.scrape_index_page(@input)
+    Job.create_from_collection(@jobs_array)
   end
   
   def display_jobs  

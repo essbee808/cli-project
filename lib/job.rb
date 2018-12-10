@@ -3,20 +3,19 @@ require_relative "../lib/command_line_interface.rb"
 require 'pry'
 
 class Job
-  attr_accessor :title, :company, :wage, :url
+  attr_accessor :title, :company, :wage, :job_url
   
   @@all = []
   
   def initialize(job_hash)
     job_hash.each {|key, value| self.send(("#{key}="), value)}
-    
     @@all << self
   end
   
   def self.create_from_collection(job_array)
     job_array.each do |el|
       new_job = self.new(el)
-      return new_job
+      new_job
     end
   end
   
