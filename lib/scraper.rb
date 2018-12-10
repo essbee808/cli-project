@@ -16,8 +16,8 @@ class Scraper
       binding.pry
       job = {
         :title => job_card.css('a').attr('title').value,
+        :company => job_card.css('span.company').text.strip, #remove white space
         :job_url => job_card.css('a').attr('href').value
-        :company => job_card.css('span.company').text
       }
     end
       job
