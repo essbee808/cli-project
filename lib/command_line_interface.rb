@@ -7,7 +7,6 @@ class CommandLineInterface
   
   def run_program
     greeting
-    gets_input
     make_jobs
     #display_jobs
   end
@@ -18,7 +17,8 @@ class CommandLineInterface
   end
   
   def gets_input
-    input = gets.strip
+    input = gets.strip.to_s
+    @input = input
 
     if /^[0-9]{5}$/.match(input)
       puts "Great! Here are some awesome jobs that we found for #{input}: "
@@ -27,11 +27,13 @@ class CommandLineInterface
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
       gets_input
     end
-    input
+    @input
   end
   
   def make_jobs
-    jobs_array = Scraper.scrape_index_page(input)
+    gets_input
+    binding.pry
+    jobs_array = Scraper.scrape_index_page(@input)
     Job.create_from_collection(jobs_array)
   end
   
@@ -42,24 +44,6 @@ class CommandLineInterface
 end
   
 
-  
-#   def add_attributes_to_jobs
-  
-#   end
-  
-  
-  
-#   def display_jobs
-  
-#   end
-  
-  
-# end
-
-# Capture user's input
-
-#prompt user to start program
-  #Would you like to find a job? (Y/N)
 
 # prompt user for zipcode
   #Great! Please enter your 5 digit zipcode:
