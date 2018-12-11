@@ -22,6 +22,9 @@ class Scraper
     
   def self.scrape_job_post(job_url)
       html = open(job_url)
+      parsed_page = Nokogiri::HTML(html) #parse html
+      
+      job_info = parsed_page.css('') # find css selector
       
       #:description => job_card.css('span')
       
