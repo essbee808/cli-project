@@ -36,6 +36,13 @@ class CommandLineInterface
     Job.create_from_collection(@jobs_array)
   end
   
+  def add_attributes_to_job
+    Job.all.each do |job|
+      attributes = Scraper.scrape_job_post(job_url)
+      job.add_job_attributes(attributes)
+    end
+  end
+  
   def display_jobs  
     
   end
