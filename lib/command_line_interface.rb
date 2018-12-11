@@ -8,6 +8,7 @@ class CommandLineInterface
   def run_program
     greeting
     make_jobs
+    add_attributes_to_job
     #display_jobs
   end
   
@@ -38,6 +39,7 @@ class CommandLineInterface
   
   def add_attributes_to_job
     Job.all.each do |job|
+      binding.pry
       attributes = Scraper.scrape_job_post(job_url)
       job.add_job_attributes(attributes)
     end
