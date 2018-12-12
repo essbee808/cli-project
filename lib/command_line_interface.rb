@@ -40,7 +40,7 @@ class CommandLineInterface
   def add_attributes_to_job
     Job.all.each do |job|
       binding.pry
-      attributes = Scraper.scrape_job_post(job.job_url)
+      attributes = Scraper.scrape_job_post(BASE_PATH + job.job_url)
       job.add_job_attributes(attributes)
     end
   end

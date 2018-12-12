@@ -1,14 +1,15 @@
 require_relative "../lib/command_line_interface.rb"
+require_relative "../lib/job.rb"
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
 class Scraper
   
-  BASE_PATH = "https://www.indeed.com/l-"
+  BASE_PATH = "https://www.indeed.com"
 
   def self.scrape_index_page(input)
-    html = open(BASE_PATH + "#{input}-jobs.html") # interpolate input
+    html = open(BASE_PATH + "/l-#{input}-jobs.html") # interpolate input
     parsed_page = Nokogiri::HTML(html)
     all_jobs = parsed_page.css('div.jobsearch-SerpJobCard')
 
@@ -24,10 +25,9 @@ class Scraper
     
   def self.scrape_job_post(job_url)
       html = open(job_url)
-      binding.pry
       parsed_page = Nokogiri::HTML(html) #parse html
       
-      job_info = parsed_page.css('') # find css selector
+      #job_info = parsed_page.css('') # find css selector
       
       #:description => job_card.css('span')
       
