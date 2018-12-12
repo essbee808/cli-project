@@ -1,5 +1,5 @@
-require_relative "../lib/command_line_interface.rb"
-require_relative "../lib/job.rb"
+# require_relative "../lib/command_line_interface.rb"
+# require_relative "../lib/job.rb"
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
@@ -21,9 +21,10 @@ class Scraper
       }
       job
     end
-    end
+  end
     
   def self.scrape_job_post(job_url)
+      binding.pry
       html = open(job_url)
       parsed_page = Nokogiri::HTML(html) #parse html
       

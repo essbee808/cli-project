@@ -12,8 +12,8 @@ class Job
     @@all << self
   end
   
-  def self.create_from_collection(job_array)
-    job_array.each do |el|
+  def self.create_from_collection(jobs_array)
+    jobs_array.each do |el|
       new_job = self.new(el)
       new_job
     end

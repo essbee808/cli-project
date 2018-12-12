@@ -33,8 +33,8 @@ class CommandLineInterface
   
   def make_jobs
     gets_input
-    @jobs_array = Scraper.scrape_index_page(@input)
-    Job.create_from_collection(@jobs_array)
+    jobs_array = Scraper.scrape_index_page(@input)
+    Job.create_from_collection(jobs_array)
   end
   
   def add_attributes_to_job
