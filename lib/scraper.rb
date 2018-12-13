@@ -14,7 +14,6 @@ class Scraper
     all_jobs = parsed_page.css('div.jobsearch-SerpJobCard')
 
     all_jobs.collect do |job_card|
-      
       job = {
         :title => job_card.css('a').attr('title').value,
         :company => job_card.css('span.company').text.strip, #remove white space
@@ -31,7 +30,7 @@ class Scraper
       other_details = parsed_job_post.css('div.jobsearch-ViewJobLayout-jobDisplay')
       
       other_details.collect do |info|
-      
+      # binding.pry
         details = {
           :description => info.css('div.jobsearch-JobComponent-description p').text,
           :status => info.css('div.jobsearch-JobMetadataHeader-item').text
