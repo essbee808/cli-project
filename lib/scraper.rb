@@ -26,15 +26,15 @@ class Scraper
   def self.scrape_job_post(job_url)
       html = open(job_url)
       parsed_job_post = Nokogiri::HTML(html) #parse html
+      other_details = parsed_job_post.css('div.jobsearch-JobComponent')
+      
+      other_details.collect do |info|
       binding.pry
-      other_details = parsed_job_post.css('div.jobsearch-ViewJobLayout-jobDisplay')
-      
-      job_info.collect do |info|
-        info = {
-          :description => info.css('div.class')
+        details = {
+          :description => info.css('div.p'),
+          :location => info.css('div.icl-u-lg-block')
         }
+        details
       end
-      #:description => job_card.css('span') # find a new selector for description?
-      
   end
 end
