@@ -5,6 +5,8 @@ require 'pry'
 
 class CommandLineInterface
   
+  BASE_PATH = "https://www.indeed.com"
+  
   def run_program
     greeting
     make_jobs
@@ -39,9 +41,8 @@ class CommandLineInterface
   
   def add_attributes_to_job
     Job.all.each do |job|
-      binding.pry
       attributes = Scraper.scrape_job_post(BASE_PATH + job.job_url)
-      job.add_job_attributes(attributes)
+      #job.add_job_attributes(attributes)
     end
   end
   
