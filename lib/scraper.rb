@@ -32,7 +32,7 @@ class Scraper
       binding.pry
         details = {
           :description => info.css('div.jobsearch-JobComponent-description p').text,
-          :location => info.css('div.icl-u-lg-block')
+          :status => info.css('div.jobsearch-JobMetadataHeader-item').text
         }
         details
       end
