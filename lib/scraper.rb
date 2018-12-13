@@ -29,7 +29,7 @@ class Scraper
       parsed_job_post = Nokogiri::HTML(html) #parse html
       job_info = parsed_job_post.css('div.vjs-jobtitle') # find a new css selector
       
-      #:description => job_card.css('span')
+      #:description => job_card.css('span') # find a new selector for description?
       
   end
 end
