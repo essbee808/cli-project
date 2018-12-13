@@ -29,6 +29,12 @@ class Scraper
       binding.pry
       job_info = parsed_job_post.css('div.jobsearch-JobComponent-description') # find a new css selector
       
+      job_info.collect do |info|
+        info = {
+          
+          
+        }
+      
       #:description => job_card.css('span') # find a new selector for description?
       
   end
