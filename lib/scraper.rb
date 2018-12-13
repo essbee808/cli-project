@@ -29,13 +29,16 @@ class Scraper
       parsed_job_post = Nokogiri::HTML(html) #parse html
       other_details = parsed_job_post.css('div.jobsearch-ViewJobLayout-jobDisplay')
       
+      attributes_array = []
+      
       other_details.collect do |info|
-      # binding.pry
+  
         details = {
           :description => info.css('div.jobsearch-JobComponent-description p').text,
           :status => info.css('div.jobsearch-JobMetadataHeader-item').text
         }
-        details
+      attributes_array << details
       end
+    attributes_array
   end
 end

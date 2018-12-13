@@ -36,13 +36,16 @@ class CommandLineInterface
   def make_jobs
     gets_input
     jobs_array = Scraper.scrape_index_page(@input)
-    Job.create_from_collection(jobs_array)
+    binding.pry
+    Job.create_from_collection(jobs_array)  # returns an array of job objects and 4 attributes
   end
   
-  def add_attributes_to_job
+  def add_other_attributes_to_job
     Job.all.each do |job|
       attributes = Scraper.scrape_job_post(BASE_PATH + job.job_url)
-      #job.add_job_attributes(attributes)
+      binding.pry
+      job.add_job_attributes(attributes)
+      job
     end
   end
   

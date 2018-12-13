@@ -19,10 +19,11 @@ class Job
     end
   end
   
-  def add_job_attributes(attributes_hash)
+  def add_job_attributes(attributes_array)
     #iterate over attributes_hash
       #use metaprogramming; assign job attributes and values using send method
-      attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+      binding.pry
+      attributes_array.each {|key, value| self.send(("#{key}="), value)}
   end
   
   def self.all
