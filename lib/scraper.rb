@@ -31,12 +31,10 @@ class Scraper
       
       details_hash = {}
       
-      other_details.collect do |info|
-       
+      other_details.each do |info|
           details_hash[:description] = info.css('div.jobsearch-JobComponent-description p').text
-          details_hash[:status] = info.css('div.jobsearch-JobMetadataHeader-item').text
-        
-      details_hash
+          details_hash[:type] = info.css('div.jobsearch-JobMetadataHeader-item').text
       end
+      details_hash
   end
 end

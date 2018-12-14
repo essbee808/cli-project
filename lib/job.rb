@@ -3,7 +3,7 @@ require_relative "../lib/command_line_interface.rb"
 require 'pry'
 
 class Job
-  attr_accessor :title, :company, :description, :location, :job_url, :status
+  attr_accessor :title, :company, :description, :location, :job_url, :type
   
   @@all = []
   
@@ -19,11 +19,10 @@ class Job
     end
   end
   
-  def add_job_attributes(other_attributes)
+  def add_job_attributes(other_details)
     #iterate over attributes_hash
       #use metaprogramming; assign job attributes and values using send method
-      
-      other_attributes.each {|key, value| self.send(("#{key}="), value)}
+      other_details.each {|key, value| self.send(("#{key}="), value)}
   end
   
   def self.all
