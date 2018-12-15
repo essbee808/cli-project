@@ -23,6 +23,7 @@ class Job
     #iterate over attributes_hash
       #use metaprogramming; assign job attributes and values using send method
       other_details.each {|key, value| self.send(("#{key}="), value)}
+      # add details to hash?
   end
   
   def self.all
