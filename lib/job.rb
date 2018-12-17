@@ -28,7 +28,6 @@ class Job
       end
     @description = self.description
     @type = self.type
-    puts self
   end
   
   def self.all
