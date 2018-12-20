@@ -3,6 +3,7 @@
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'colorize'
 
 require_relative "indeed_scraper/version"
 require_relative "indeed_scraper/command_line_interface"

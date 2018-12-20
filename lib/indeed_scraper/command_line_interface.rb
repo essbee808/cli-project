@@ -10,28 +10,44 @@ class CommandLineInterface
   end
   
   def greeting
-    puts "Hello there! Welcome to Indeed Scraper Command Line Interface."
-    puts "Please enter your 5 digit zipcode:"
+    puts "Hello there! Welcome to Indeed Scraper Command Line Interface.".red
+    puts "What is your name?".red
+    @user_name = user_input
+    puts " "
+    puts "Aloha, #{@user_name.upcase}! ".red
+    puts "Please enter your 5 digit zipcode:".red
   end
 
 #User's input
   def user_input
-      input = gets.strip #remove white space
+    input = gets.strip #remove white space
     @input = input
   end
   
   def make_selection
-    puts "Please select a number from the list above for more details or type 'more' for more jobs."
+    puts " "
+    puts "Please select a number from the list above for more info.".red
     user_input
     
     if @input.to_i.between?(1, 15)
-        puts "Here are more details:"
-        
+        puts " "
         job = Job.all[@input.to_i-1]
 
-        puts "Title: " + job.title
-        puts "Description: " + job.description
-
+        puts " "
+        puts "TITLE: ".blue + job.title if !job.title.empty?
+        puts " "
+        puts "COMPANY: ".blue + job.company if !job.company.empty?
+        puts " "
+        puts "HOURS/SALARY: ".blue + job.type if !job.type.empty?
+        puts " "
+        puts "LOCATION: ".blue + job.location if !job.location.empty?
+        puts " "
+        if !job.description.empty?
+          puts "DESCRIPTION: ".blue
+          puts " "
+          puts job.description
+        end
+        puts " "
         menu_list
     else
         make_selection
@@ -39,22 +55,26 @@ class CommandLineInterface
   end
 
   def menu_list
-    puts "What do you want to do?"
+    puts " "
+    puts "What do you want to do, #{@user_name.upcase}?".red
+    puts " "
     puts "1. Apply"
     puts "2. Go back"
     puts "3. Exit"
+    puts "  "
 
     user_input
     # binding.pry
     if @input.to_i == 1
       job = Job.all[@input.to_i-1]
-      puts "Right click on the link below to apply!"
+      puts "To apply, right click on the link below then select 'Open URL'.".red
+      puts " "
       puts BASE_PATH + job.job_url
       menu_list
     elsif @input.to_i == 2
       display_job
     elsif @input.to_i == 3
-      puts "See you later!"
+      puts "See you later, #{@user_name.upcase}! Sending positive vibes your way!".red
     else
       menu_list
     end
@@ -62,9 +82,10 @@ class CommandLineInterface
 
   def verify_zipcode
      if /^[0-9]{5}$/.match(@input)
-      puts "Great! Here are some awesome jobs that we found for #{@input}: "
+      puts "Great! Here are some awesome jobs that we found for #{@input}: ".red
+      puts " "
      else
-      puts "I don't know what that is. Please enter your 5 digit zipcode:"
+      puts "Hmm...that doesn't look right, #{@user_name.upcase}. Please enter your 5 digit zipcode:".red
       user_input
     end
     @input
@@ -72,6 +93,7 @@ class CommandLineInterface
   
   def make_jobs
     user_input
+    puts " "
     verify_zipcode
     jobs_array = Scraper.scrape_index_page(@input)
     Job.create_from_collection(jobs_array)  # creates an array of job objects with 4 attributes
@@ -87,7 +109,8 @@ class CommandLineInterface
   def display_job
         Job.all.each.with_index(1) do |el, index|
             #if index <= 4 #=> displays first 5 jobs in @@all array
-            puts "#{index}" + ". " + el.title + ' - ' + el.company
+            puts "#{index}" + ". " + el.title
+            puts " "
         end
         make_selection
   end
@@ -108,21 +131,6 @@ end
 #else
 #    loop
 #end
-
-                
-#
-#            else
-#                puts "Select a number above to see details or type 'more' for other jobs."
-#                selection = gets_input.upcase
-#
-#                if /^[1-5]$/.match(selection)
-#                    puts "You selected number #{selection}."
-#                elsif selection == 'MORE'
-#                    puts "Stay tuned!"
-#                else
-#                    display_job
-#                end
-#            end
 
 
 # prompt user for zipcode
