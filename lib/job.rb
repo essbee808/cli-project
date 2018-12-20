@@ -18,6 +18,12 @@ class Job
       new_job
     end
   end
+
+  def find_job(@input)
+      binding.pry
+    self.all.find do |el|
+    end
+  end
   
   def add_job_attributes(other_details)
     #iterate over attributes_hash
