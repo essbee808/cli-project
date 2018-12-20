@@ -17,21 +17,22 @@ class CommandLineInterface
   end
 
 #User's input
-  def gets_input
+  def user_input
       input = gets.strip #remove white space
     @input = input
   end
   
   def make_selection
     puts "Please select a number from the list above for more details or type 'more' for more jobs."
-    gets_input
+    user_input
     
-    if /^[1-15]$/.match(@input)
+    if @input.to_i.between?(1, 15)
         puts "Here are more details:"
-        Job.all.detect do |el|
-            el == @input.to_i-1
-            puts el #displays each individual job hash
-        end
+        
+        job = Job.all[@input.to_i-1]
+        binding.pry
+        puts job.title
+        puts job.description
     
     elsif @input == 'more'
         puts "Stay tuned, we're still working on this feature..."
@@ -47,13 +48,13 @@ class CommandLineInterface
       puts "Great! Here are some awesome jobs that we found for #{@input}: "
      else
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
-      gets_input
+      user_input
     end
     @input
   end
   
   def make_jobs
-    gets_input
+    user_input
     verify_zipcode
     jobs_array = Scraper.scrape_index_page(@input)
     Job.create_from_collection(jobs_array)  # creates an array of job objects with 4 attributes
@@ -68,10 +69,9 @@ class CommandLineInterface
   end
   
   def display_job
-        Job.all.each_with_index do |el, index|
-          binding.pry
+        Job.all.each.with_index(1) do |el, index|
             #if index <= 4 #=> displays first 5 jobs in @@all array
-            puts "#{index+1}" + ". " + el[:title] + ' - ' + el[:company]
+            puts "#{index}" + ". " + el.title + ' - ' + el.company
         end
         make_selection
   end
