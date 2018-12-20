@@ -31,17 +31,36 @@ class CommandLineInterface
 
         puts "Title: " + job.title
         puts "Description: " + job.description
-    
-    elsif @input == 'more'
-        puts "Stay tuned, we're still working on this feature..."
+
+        menu_list
     else
         make_selection
     end
-    #conditional statement
+  end
+
+  def menu_list
+    puts "What do you want to do?"
+    puts "1. Apply"
+    puts "2. Go back"
+    puts "3. Exit"
+
+    user_input
+    # binding.pry
+    if @input.to_i == 1
+      job = Job.all[@input.to_i-1]
+      puts "Right click on the link below to apply!"
+      puts BASE_PATH + job.job_url
+      menu_list
+    elsif @input.to_i == 2
+      display_job
+    elsif @input.to_i == 3
+      puts "See you later!"
+    else
+      menu_list
+    end
   end
 
   def verify_zipcode
-    #binding.pry
      if /^[0-9]{5}$/.match(@input)
       puts "Great! Here are some awesome jobs that we found for #{@input}: "
      else
@@ -72,6 +91,8 @@ class CommandLineInterface
         end
         make_selection
   end
+
+end
             
 #display first 5 jobs
 #prompt user to make a selection or type 'more' for more choices
@@ -102,46 +123,6 @@ class CommandLineInterface
 #                    display_job
 #                end
 #            end
-    end
-        
-  def display_details
-      
-  end
-        
-#        selection = gets_input
-#        if /^[1-5]$/.match(selection)
-#            Job.all.detect do |el, index|
-#                if #{index+1} == selection
-#                    puts "Description: " + el[:description]
-#                end
-#            end
-#        end
-#    Job.all #=> returns array of job hashes
-#  end
-#
-
-# IRB Session
-
-#   job1 = {:title => "Makeup Artist", :company => "Disney"}
-#   job2 = {:title => "Actor", :company => "Universal Studios"}
-#   job3 = {:title => "Musician", :company => "Guitar World"}
-#   job4 = {:title => "Singer", :company => "Da Band"}
-#   job5 = {:title => "Drummer", :company => "Da Band"}
-#   job6 = {:title => "Guitarist", :company => "My Band"}
-  
-#   @@all = []
-  
-#   @@all << job1
-#   @@all << job2
-#   @@all << job3
-#   @@all << job4
-#   @@all << job5
-#   @@all << job6
-  
-  #        elsif index > 5
-  #            puts "#{index+1}" + ". " + el[:company]
-
-  
 
 
 # prompt user for zipcode
