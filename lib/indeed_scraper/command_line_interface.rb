@@ -31,6 +31,7 @@ class CommandLineInterface
     
     if /^[1-15]$/.match(@input)
         puts "Here are more details:"
+        binding.pry
         Job.all.detect do |el|
             el == @input.to_i-1
             puts el #displays each individual job hash
@@ -64,7 +65,7 @@ class CommandLineInterface
   def add_other_attributes_to_job
     Job.all.each do |job|
       other_details = Scraper.scrape_job_post(BASE_PATH + job.job_url)
-      binding.pry
+   
       job.add_job_attributes(other_details)
     end
   end
