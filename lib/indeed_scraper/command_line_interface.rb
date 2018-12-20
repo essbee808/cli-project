@@ -1,7 +1,4 @@
-require_relative "../lib/job.rb"
-require_relative "../lib/scraper.rb"
-require 'nokogiri'
-require 'pry'
+
 
 class CommandLineInterface
   
