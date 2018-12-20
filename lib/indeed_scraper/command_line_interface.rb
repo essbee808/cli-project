@@ -28,7 +28,6 @@ class CommandLineInterface
     
     if /^[1-15]$/.match(@input)
         puts "Here are more details:"
-        binding.pry
         Job.all.detect do |el|
             el == @input.to_i-1
             puts el #displays each individual job hash
@@ -43,8 +42,9 @@ class CommandLineInterface
   end
 
   def verify_zipcode
+    #binding.pry
      if /^[0-9]{5}$/.match(@input)
-      puts "Great! Here are some awesome jobs that we found for #{input}: "
+      puts "Great! Here are some awesome jobs that we found for #{@input}: "
      else
       puts "I don't know what that is. Please enter your 5 digit zipcode:"
       gets_input
@@ -69,6 +69,7 @@ class CommandLineInterface
   
   def display_job
         Job.all.each_with_index do |el, index|
+          binding.pry
             #if index <= 4 #=> displays first 5 jobs in @@all array
             puts "#{index+1}" + ". " + el[:title] + ' - ' + el[:company]
         end
