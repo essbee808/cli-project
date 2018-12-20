@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "cli/project/version"
+require "indeed_scraper/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "cli-project"
-  spec.version       = Cli::Project::VERSION
+  spec.name          = "indeed_scraper"
+  spec.version       = IndeedScraper::VERSION
   spec.authors       = ["'Sheena Bonilla'"]
   spec.email         = ["'sheena.myb@gmail.com'"]
 
