@@ -122,23 +122,23 @@ class CommandLineInterface
 #  end
 #
 
-IRB Session
+# IRB Session
 
-  job1 = {:title => "Makeup Artist", :company => "Disney"}
-  job2 = {:title => "Actor", :company => "Universal Studios"}
-  job3 = {:title => "Musician", :company => "Guitar World"}
-  job4 = {:title => "Singer", :company => "Da Band"}
-  job5 = {:title => "Drummer", :company => "Da Band"}
-  job6 = {:title => "Guitarist", :company => "My Band"}
+#   job1 = {:title => "Makeup Artist", :company => "Disney"}
+#   job2 = {:title => "Actor", :company => "Universal Studios"}
+#   job3 = {:title => "Musician", :company => "Guitar World"}
+#   job4 = {:title => "Singer", :company => "Da Band"}
+#   job5 = {:title => "Drummer", :company => "Da Band"}
+#   job6 = {:title => "Guitarist", :company => "My Band"}
   
-  @@all = []
+#   @@all = []
   
-  @@all << job1
-  @@all << job2
-  @@all << job3
-  @@all << job4
-  @@all << job5
-  @@all << job6
+#   @@all << job1
+#   @@all << job2
+#   @@all << job3
+#   @@all << job4
+#   @@all << job5
+#   @@all << job6
   
   #        elsif index > 5
   #            puts "#{index+1}" + ". " + el[:company]

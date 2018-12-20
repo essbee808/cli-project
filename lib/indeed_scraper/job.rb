@@ -1,6 +1,4 @@
-require_relative "../lib/scraper.rb"
-require_relative "../lib/command_line_interface.rb"
-require 'pry'
+
 
 class Job
   attr_accessor :title, :company, :description, :location, :job_url, :type
@@ -16,12 +14,6 @@ class Job
     jobs_array.each do |el|
       new_job = self.new(el)
       new_job
-    end
-  end
-
-  def find_job(@input)
-      binding.pry
-    self.all.find do |el|
     end
   end
   

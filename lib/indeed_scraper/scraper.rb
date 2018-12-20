@@ -1,8 +1,4 @@
-require_relative "../lib/command_line_interface.rb"
-require_relative "../lib/job.rb"
-require 'open-uri'
-require 'nokogiri'
-require 'pry'
+
 
 class Scraper
   
