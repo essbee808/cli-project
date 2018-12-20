@@ -1,5 +1,3 @@
-
-
 class CommandLineInterface
   
   BASE_PATH = "https://www.indeed.com"
@@ -30,9 +28,9 @@ class CommandLineInterface
         puts "Here are more details:"
         
         job = Job.all[@input.to_i-1]
-        binding.pry
-        puts job.title
-        puts job.description
+
+        puts "Title: " + job.title
+        puts "Description: " + job.description
     
     elsif @input == 'more'
         puts "Stay tuned, we're still working on this feature..."
@@ -63,7 +61,6 @@ class CommandLineInterface
   def add_other_attributes_to_job
     Job.all.each do |job|
       other_details = Scraper.scrape_job_post(BASE_PATH + job.job_url)
-   
       job.add_job_attributes(other_details)
     end
   end
