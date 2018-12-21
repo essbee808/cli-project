@@ -26,28 +26,23 @@ class CommandLineInterface
   
   def make_selection
     puts " "
-    puts "Please select a number from the list above for more info.".red
+    puts "Select a number from the list above for more info.".red
+    puts "Enter a number:".red
     user_input
-    
+
     if @input.to_i.between?(1, 15)
         puts " "
         job = Job.all[@input.to_i-1]
 
         puts " "
-        puts "TITLE: ".blue + job.title if !job.title.empty?
-        puts " "
-        puts "COMPANY: ".blue + job.company if !job.company.empty?
-        puts " "
-        puts "HOURS/SALARY: ".blue + job.type if !job.type.empty?
-        puts " "
-        puts "LOCATION: ".blue + job.location if !job.location.empty?
-        puts " "
+        puts "TITLE: ".blue + "#{job.title}\n" if !job.title.empty?        
+        puts "COMPANY: ".blue + "#{job.company}\n" if !job.company.empty?
+        puts "HOURS/SALARY: ".blue + "#{job.type}\n" if !job.type.empty?
+        puts "LOCATION: ".blue + "#{job.location}\n\n" if !job.location.empty?
         if !job.description.empty?
-          puts "DESCRIPTION: ".blue
-          puts " "
-          puts job.description
+          puts "DESCRIPTION: \n".blue
+          puts "#{job.description}\n"
         end
-        puts " "
         menu_list
     else
         make_selection
@@ -57,11 +52,10 @@ class CommandLineInterface
   def menu_list
     puts " "
     puts "What do you want to do, #{@user_name.upcase}?".red
-    puts " "
+    puts "Enter a number:\n".red
     puts "1. Apply"
     puts "2. Go back"
-    puts "3. Exit"
-    puts "  "
+    puts "3. Exit\n"
 
     user_input
     # binding.pry
@@ -74,6 +68,7 @@ class CommandLineInterface
     elsif @input.to_i == 2
       display_job
     elsif @input.to_i == 3
+      puts " "
       puts "See you later, #{@user_name.upcase}! Sending positive vibes your way!".red
     else
       menu_list
@@ -82,11 +77,15 @@ class CommandLineInterface
 
   def verify_zipcode
      if /^[0-9]{5}$/.match(@input)
-      puts "Great! Here are some awesome jobs that we found for #{@input}: ".red
-      puts " "
+      puts "Great! We found some cool jobs for #{@input}.".red
+      puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".red
+      puts "                       /\\_/\\                     "
+      puts "                      ( o.o )                      "
+      puts "                       > ^ <                       \n\n\n\n"
      else
-      puts "Hmm...that doesn't look right, #{@user_name.upcase}. Please enter your 5 digit zipcode:".red
+      puts "Hmm...that doesn't look right. Please enter your 5 digit zipcode:".red
       user_input
+      verify_zipcode
     end
     @input
   end

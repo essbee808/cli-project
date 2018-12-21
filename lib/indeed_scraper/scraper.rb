@@ -1,5 +1,3 @@
-
-
 class Scraper
   
   BASE_PATH = "https://www.indeed.com"

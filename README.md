@@ -1,8 +1,6 @@
 # IndeedScraper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/indeed_scraper`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Indeed Scraper! This CLI (Command Line Interface) Gem was created to assist in finding employment. Data is extracted from an external source (i.e. www.indeed.com) and displayed as the following attributes: title, location, hours/salary, job url, and a short description.
 
 ## Installation
 
