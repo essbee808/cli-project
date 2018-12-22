@@ -33,8 +33,8 @@ class CommandLineInterface
     if @input.to_i.between?(1, 15)
         puts " "
         job = Job.all[@input.to_i-1]
-
         puts " "
+        @url = BASE_PATH + job.job_url
         puts "TITLE: ".blue + "#{job.title}\n" if !job.title.empty?        
         puts "COMPANY: ".blue + "#{job.company}\n" if !job.company.empty?
         puts "HOURS/SALARY: ".blue + "#{job.type}\n" if !job.type.empty?
@@ -42,8 +42,10 @@ class CommandLineInterface
         if !job.description.empty?
           puts "DESCRIPTION: \n".blue
           puts "#{job.description}\n"
+        
         end
         menu_list
+        @url
     else
         make_selection
     end
@@ -60,16 +62,15 @@ class CommandLineInterface
     user_input
     # binding.pry
     if @input.to_i == 1
-      job = Job.all[@input.to_i-1]
       puts "To apply, right click on the link below then select 'Open URL'.".green
       puts " "
-      puts BASE_PATH + job.job_url
+      puts @url
       menu_list
     elsif @input.to_i == 2
       display_job
     elsif @input.to_i == 3
       puts " "
-      puts "See you later, #{@user_name}! Good luck on your job search!".green
+      puts "See you later, #{@user_name}! Good luck on your job!".green
     else
       menu_list
     end
