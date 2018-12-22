@@ -10,12 +10,12 @@ class CommandLineInterface
   end
   
   def greeting
-    puts "Hello there! Welcome to Indeed Scraper Command Line Interface.".red
-    puts "What is your name?".red
+    puts "Hello there! Welcome to Indeed Scraper Command Line Interface.".green
+    puts "What is your name?".green
     @user_name = user_input
     puts " "
-    puts "Aloha, #{@user_name.upcase}! ".red
-    puts "Please enter your 5 digit zipcode:".red
+    puts "Aloha, #{@input}!".green
+    puts "Enter your 5 digit zipcode:".green
   end
 
 #User's input
@@ -26,8 +26,8 @@ class CommandLineInterface
   
   def make_selection
     puts " "
-    puts "Select a number from the list above for more info.".red
-    puts "Enter a number:".red
+    puts "Select a number from the list above for more info.".green
+    puts "Enter a number:".green
     user_input
 
     if @input.to_i.between?(1, 15)
@@ -51,8 +51,8 @@ class CommandLineInterface
 
   def menu_list
     puts " "
-    puts "What do you want to do, #{@user_name.upcase}?".red
-    puts "Enter a number:\n".red
+    puts "What do you want to do, #{@user_name}?".green
+    puts "Enter a number:\n".green
     puts "1. Apply"
     puts "2. Go back"
     puts "3. Exit\n"
@@ -61,7 +61,7 @@ class CommandLineInterface
     # binding.pry
     if @input.to_i == 1
       job = Job.all[@input.to_i-1]
-      puts "To apply, right click on the link below then select 'Open URL'.".red
+      puts "To apply, right click on the link below then select 'Open URL'.".green
       puts " "
       puts BASE_PATH + job.job_url
       menu_list
@@ -69,7 +69,7 @@ class CommandLineInterface
       display_job
     elsif @input.to_i == 3
       puts " "
-      puts "See you later, #{@user_name.upcase}! Sending positive vibes your way!".red
+      puts "See you later, #{@user_name}! Good luck on your job search!".green
     else
       menu_list
     end
@@ -77,13 +77,13 @@ class CommandLineInterface
 
   def verify_zipcode
      if /^[0-9]{5}$/.match(@input)
-      puts "Great! We found some cool jobs for #{@input}.".red
-      puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".red
-      puts "                       /\\_/\\                     "
-      puts "                      ( o.o )                      "
-      puts "                       > ^ <                       \n\n\n\n"
+      puts "Great! We found some cool jobs for #{@input}.".green
+      puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".green
+      puts "                       /\\_/\\                     ".magenta.blink
+      puts "                      ( o.o )                      ".magenta.blink
+      puts "                       > ^ <                       \n\n\n\n".magenta.blink
      else
-      puts "Hmm...that doesn't look right. Please enter your 5 digit zipcode:".red
+      puts "Hmm...that doesn't look right. Enter your 5 digit zipcode:".green
       user_input
       verify_zipcode
     end
@@ -108,8 +108,7 @@ class CommandLineInterface
   def display_job
         Job.all.each.with_index(1) do |el, index|
             #if index <= 4 #=> displays first 5 jobs in @@all array
-            puts "#{index}" + ". " + el.title
-            puts " "
+            puts "#{index}" + ". " + "#{el.title}\n\n"
         end
         make_selection
   end

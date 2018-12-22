@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-gem 'mechanize'
+git_source(:github) {|indeed_scraper| "https://github.com/essbee808/indeed_scraper" }
+gem 'colorize'
+gem 'nokogiri'
+gem 'open-uri'
 
-# Specify your gem's dependencies in cli-project.gemspec
+# Specify your gem's dependencies in indeed_scraper.gemspec
 gemspec

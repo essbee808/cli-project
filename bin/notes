@@ -25,3 +25,6 @@ Open-uri
   
 Nokogiri
   used to parse XML/HTML
+
+Colorize
+  add colored text
