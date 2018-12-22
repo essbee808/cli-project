@@ -6,4 +6,5 @@ gem 'nokogiri'
 gem 'open-uri'
 
 # Specify your gem's dependencies in indeed_scraper.gemspec
+
 gemspec

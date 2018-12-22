@@ -11,3 +11,6 @@ require_relative "indeed_scraper/job"
 require_relative "indeed_scraper/scraper"
 
 #when referencing, don't need .rb
+
+module Concerns
+end
