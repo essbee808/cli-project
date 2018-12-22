@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Sheena Bonilla'"]
   spec.email         = ["'sheena.myb@gmail.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "Indeed Scraper was created to provide assistance in finding employment."
+  spec.description   = "Data is extracted from an external source (i.e. www.indeed.com) and displayed as the following attributes: title, location, hours/salary, job url, and a short description"
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
