@@ -4,6 +4,7 @@ class CommandLineInterface
   
   def run_program
     greeting
+    zipcode
     make_jobs
     add_other_attributes_to_job
     display_job
@@ -15,21 +16,23 @@ class CommandLineInterface
     @user_name = user_input
     puts " "
     puts "Aloha, #{@input}!".green
-    puts "Enter your 5 digit zipcode:".green
   end
 
-#User's input
   def user_input
     input = gets.strip #remove white space
     @input = input
   end
+
+  def zipcode
+    puts "Enter your 5 digit zipcode:".green
+  end
   
   def make_selection
     puts " "
-    puts "Select a number from the list above for more info.".green
-    puts "Enter a number:".green
+    puts "Select a number from the list above for more info or type 'back' to enter a new zipcode.".green
     user_input
 
+  #=> conditional statement depending on user's selection
     if @input.to_i.between?(1, 15)
         puts " "
         job = Job.all[@input.to_i-1]
@@ -42,10 +45,14 @@ class CommandLineInterface
         if !job.description.empty?
           puts "DESCRIPTION: \n".blue
           puts "#{job.description}\n"
-        
         end
         menu_list
         @url
+    elsif @input == "back"
+      @input.clear
+      zipcode
+      make_jobs
+      make_selection
     else
         make_selection
     end
@@ -57,27 +64,24 @@ class CommandLineInterface
     puts "Enter a number:\n".green
     puts "1. Apply"
     puts "2. Go back"
-    puts "3. Exit\n"
+    puts "3. Exit\n\n"
 
     user_input
-    # binding.pry
-    if @input.to_i == 1
-      puts "To apply, right click on the link below then select 'Open URL'.".green
-      puts " "
+    if @input.to_i == 1 #=> utilize #to_i to convert input to integer
+      puts "To apply, right click on the link below then select 'Open URL'.\n\n".green
       puts @url
       menu_list
     elsif @input.to_i == 2
       display_job
     elsif @input.to_i == 3
-      puts " "
-      puts "See you later, #{@user_name}! Good luck on your job!".green
+      puts "See you later, #{@user_name}! Good luck on your job search!".green
     else
       menu_list
     end
   end
 
   def verify_zipcode
-     if /^[0-9]{5}$/.match(@input)
+     if /^[0-9]{5}$/.match(@input) #=> check to see that zipcode has 5 digits
       puts "Great! We found some cool jobs for #{@input}.".green
       puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".green
       puts "                       /\\_/\\                     ".magenta.blink
