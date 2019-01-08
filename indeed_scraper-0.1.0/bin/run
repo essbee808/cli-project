@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative '../lib/indeed_scraper.rb'
-
-CommandLineInterface.new.run_program
-
-
