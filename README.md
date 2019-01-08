@@ -20,6 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
+Run 'indeed_scraper' after installing.
 
 
 ## Development
