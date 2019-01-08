@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Run 'indeed_scraper' after installing.
+To run program, type ```run``` in the terminal.
 
 
 ## Development
