@@ -2,6 +2,6 @@
 
 require_relative '../lib/indeed_scraper.rb'
 
-cli = CommandLineInterface.new
-cli.greeting
-cli.run_program
+CommandLineInterface.new.run_program
+
+

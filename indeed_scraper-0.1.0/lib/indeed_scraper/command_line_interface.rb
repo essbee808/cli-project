@@ -2,10 +2,11 @@ class CommandLineInterface
   
   BASE_PATH = "https://www.indeed.com"
   
-  def run_program 
-      make_jobs
-      add_other_attributes_to_job
-      display_job
+  def run_program
+    greeting
+    make_jobs
+    add_other_attributes_to_job
+    display_job
   end
   
   def greeting
@@ -13,29 +14,27 @@ class CommandLineInterface
     puts "What is your name?".green
     @user_name = user_input
     puts " "
-    puts "Hello, #{@user_name}!".green
-    @user_name
+    puts "Aloha, #{@input}!".green
+    puts "Enter your 5 digit zipcode:".green
   end
 
+#User's input
   def user_input
     input = gets.strip #remove white space
     @input = input
   end
-
-  def zipcode
-    puts "Enter your 5 digit zipcode:".green
-  end
   
   def make_selection
-    puts "Select a number from the list above for more info or type 'back' to enter a new zipcode.".green
+    puts " "
+    puts "Select a number from the list above for more info.".green
+    puts "Enter a number:".green
     user_input
 
-  #=> conditional statement depending on user's selection
     if @input.to_i.between?(1, 15)
         puts " "
         job = Job.all[@input.to_i-1]
+
         puts " "
-        @url = BASE_PATH + job.job_url
         puts "TITLE: ".blue + "#{job.title}\n" if !job.title.empty?        
         puts "COMPANY: ".blue + "#{job.company}\n" if !job.company.empty?
         puts "HOURS/SALARY: ".blue + "#{job.type}\n" if !job.type.empty?
@@ -45,12 +44,8 @@ class CommandLineInterface
           puts "#{job.description}\n"
         end
         menu_list
-        @url
-    elsif @input == "back"
-      clear_all
-      run_program
     else
-      make_selection
+        make_selection
     end
   end
 
@@ -60,16 +55,20 @@ class CommandLineInterface
     puts "Enter a number:\n".green
     puts "1. Apply"
     puts "2. Go back"
-    puts "3. Exit\n\n"
+    puts "3. Exit\n"
 
     user_input
-    if @input.to_i == 1 #=> utilize #to_i to convert input to integer
-      puts "To apply, right click on the link below then select 'Open URL'.\n\n".green
-      puts @url
+    # binding.pry
+    if @input.to_i == 1
+      job = Job.all[@input.to_i-1]
+      puts "To apply, right click on the link below then select 'Open URL'.".green
+      puts " "
+      puts BASE_PATH + job.job_url
       menu_list
     elsif @input.to_i == 2
       display_job
     elsif @input.to_i == 3
+      puts " "
       puts "See you later, #{@user_name}! Good luck on your job search!".green
     else
       menu_list
@@ -77,8 +76,8 @@ class CommandLineInterface
   end
 
   def verify_zipcode
-     if /^[0-9]{5}$/.match(@input) #=> check to see that zipcode has 5 digits
-      puts "Great! Here's what we found for #{@input}.".green
+     if /^[0-9]{5}$/.match(@input)
+      puts "Great! We found some cool jobs for #{@input}.".green
       puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".green
       puts "                       /\\_/\\                     ".magenta.blink
       puts "                      ( o.o )                      ".magenta.blink
@@ -92,7 +91,6 @@ class CommandLineInterface
   end
   
   def make_jobs
-    zipcode
     user_input
     puts " "
     verify_zipcode
@@ -115,12 +113,23 @@ class CommandLineInterface
         make_selection
   end
 
-  def clear_all
-    Job.all.clear
-  end
-
 end
             
+#display first 5 jobs
+#prompt user to make a selection or type 'more' for more choices
+#if user selects index 0-4
+#    display details for job object
+#    ask for user input
+#    prompts: apply (display url) or go back?
+#elsif user selects 'more'
+#    pull next 5 job objects from array
+#    display as 1-5?
+#    ask for user input
+#    prompt: make a selection or type 'more' for more choices
+#else
+#    loop
+#end
+
 
 # prompt user for zipcode
   #Great! Please enter your 5 digit zipcode:
@@ -129,6 +138,8 @@ end
 
 # first scrape => grabs first 15 and create job objects
 #Scraper.scrape_index_page(index)
+
+# display 5 jobs at a time
 
 # user selects job from list to get more info
 
