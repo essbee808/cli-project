@@ -5,7 +5,7 @@ Welcome to Indeed Scraper! This CLI (Command Line Interface) Gem was created to 
 ## Installation
 
 Open up the terminal and install the latest version of Ruby
-```rvm install ruby
+```rvm install ruby```
 
 Add this line to your application's Gemfile:
 
