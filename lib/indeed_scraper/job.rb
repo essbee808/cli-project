@@ -20,8 +20,6 @@ class Job
         @description = other_details[:description]
         @type = other_details[:type]
       end
-    @description = self.description
-    @type = self.type
   end
   
   def self.all
