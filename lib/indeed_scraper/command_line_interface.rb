@@ -47,7 +47,8 @@ class CommandLineInterface
         menu_list
         @url
     elsif @input == "back"
-      clear_all
+      Job.clear_all
+      binding.pry
       run_program
     else
       make_selection
@@ -109,13 +110,8 @@ class CommandLineInterface
   
   def display_job
         Job.all.each.with_index(1) do |el, index|
-            #if index <= 4 #=> displays first 5 jobs in @@all array
             puts "#{index}" + ". " + "#{el.title}\n\n"
         end
         make_selection
-  end
-
-  def clear_all
-    Job.all.clear
   end
 end
