@@ -6,8 +6,12 @@ class CommandLineInterface
     puts "Hello there! Welcome to Indeed Scraper Command Line Interface.".green
     puts "What is your name?".green
     @user_name = user_input.upcase
-    puts " "
-    puts "Hello, #{@user_name}!".green
+    if !@user_name.empty?
+      puts " "
+      puts "Hello, #{@user_name}!".green
+    else
+      greeting
+    end
     @user_name
   end
 
@@ -41,7 +45,7 @@ class CommandLineInterface
   end
   
   def make_selection(input = nil)
-    if @input.to_i <= Job.all.size && @input.to_i != 0
+    if @input.to_i <= Job.all.size #&& @input.to_i != 0
       #retrieve job object by index number
       @job = Job.all[(@input.to_i)-1]
         puts "TITLE: ".blue + "#{@job.title}\n" if !@job.title.empty?        
