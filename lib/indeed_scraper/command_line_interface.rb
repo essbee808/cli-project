@@ -16,7 +16,7 @@ class CommandLineInterface
     display_all_jobs
     make_selection(@input)
   end
-  
+
   def zipcode
     puts "Enter your 5 digit zipcode:".green
   end
@@ -50,6 +50,8 @@ class CommandLineInterface
         puts "SALARY: ".blue + "#{@job.salary}\n" if !@job.salary.empty?
         puts "DESCRIPTION: ".blue + "#{@job.description}\n" if !@job.description.empty?
       menu_list(@job.job_url)
+    elsif @input.upcase == "EXIT"
+      exit_program
     else
       select_number
       make_selection
@@ -59,7 +61,7 @@ class CommandLineInterface
   def menu_list(job_url)
     puts " "
     puts "What do you want to do, #{@user_name}?".green
-    puts "Enter a number:\n".green
+    puts "Select a number below:\n".green
     puts "1. Learn more"
     puts "2. Go back to list"
     puts "3. Enter new zipcode"
@@ -77,10 +79,7 @@ class CommandLineInterface
       Job.clear_all
       run_program
     elsif @input.to_i == 4
-      puts "See you later, #{@user_name}! Good luck on your job search!".green
-      puts "                       /\\_/\\                     ".magenta.blink
-      puts "                      ( o.o )                       ".magenta.blink
-      puts "                       > ^ <                       \n\n".magenta.blink
+      exit_program
     else
       menu_list
     end
@@ -103,4 +102,12 @@ class CommandLineInterface
     end
     select_number
   end
+
+  def exit_program
+    puts "See you later, #{@user_name}! Good luck on your job search!".green
+    puts "                       /\\_/\\                     ".magenta.blink
+    puts "                      ( o.o )                       ".magenta.blink
+    puts "                       > ^ <                       \n\n".magenta.blink
+  end
+
 end
