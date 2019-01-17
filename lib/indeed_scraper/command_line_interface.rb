@@ -45,7 +45,7 @@ class CommandLineInterface
   end
   
   def make_selection(input = nil)
-    if @input.to_i <= Job.all.size #&& @input.to_i != 0
+    if @input.to_i.between?(1, Job.all.size)
       #retrieve job object by index number
       @job = Job.all[(@input.to_i)-1]
         puts "TITLE: ".blue + "#{@job.title}\n" if !@job.title.empty?        
