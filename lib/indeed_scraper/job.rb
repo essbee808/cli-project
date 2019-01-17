@@ -15,13 +15,6 @@ class Job
     end
   end
   
-  def add_job_attributes(other_details)
-      other_details.each do |key, value|
-        @description = other_details[:description]
-        @type = other_details[:type]
-      end
-  end
-  
   def self.all
     @@all
   end
