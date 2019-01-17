@@ -4,14 +4,17 @@ class CommandLineInterface
   
   def run_program 
       make_jobs
-      add_other_attributes_to_job
       display_job
+      make_selection
   end
   
   def greeting
-    puts "Hello there! Welcome to Indeed Scraper Command Line Interface.".green
+    puts "Hello there! Welcome to Indeed Scraper Command Line Interface.\n\n".green
+    puts "                       /\\_/\\                     ".magenta.blink
+    puts "                      ( o.o )                       ".magenta.blink
+    puts "                       > ^ <                       \n\n".magenta.blink
     puts "What is your name?".green
-    @user_name = user_input
+    @user_name = user_input.upcase
     puts " "
     puts "Hello, #{@user_name}!".green
     @user_name
@@ -25,65 +28,63 @@ class CommandLineInterface
   def zipcode
     puts "Enter your 5 digit zipcode:".green
   end
+
+  def make_jobs
+    zipcode
+    user_input
+    puts " "
+    verify_zipcode
+    jobs_array = Scraper.scrape_index_page(@input)
+    Job.create_from_collection(jobs_array)  # creates an array of job objects with 5 attributes
+  end
   
   def make_selection
-    puts "Select a number from the list above for more info or type 'back' to enter a new zipcode.".green
-    user_input
-
-  #=> conditional statement depending on user's selection
-    if @input.to_i.between?(1, 15)
+    puts "Select a number from the list above or type 'new' to enter a new 5 digit zipcode:".green
+    user_input 
+    #=> conditional statement depending on user's selection
+    if (@input.to_i-1) <= Job.all.size
         puts " "
         job = Job.all[@input.to_i-1]
         puts " "
-        @url = BASE_PATH + job.job_url
         puts "TITLE: ".blue + "#{job.title}\n" if !job.title.empty?        
         puts "COMPANY: ".blue + "#{job.company}\n" if !job.company.empty?
-        puts "HOURS/SALARY: ".blue + "#{job.type}\n" if !job.type.empty?
-        puts "LOCATION: ".blue + "#{job.location}\n\n" if !job.location.empty?
-        if !job.description.empty?
-          puts "DESCRIPTION: \n".blue
-          puts "#{job.description}\n"
-        end
-        menu_list
-        @url
-    elsif @input == "back"
+        puts "LOCATION: ".blue + "#{job.location}\n" if !job.location.empty?
+        puts "SALARY: ".blue + "#{job.salary}\n" if !job.salary.empty?
+        puts "DESCRIPTION: ".blue + "#{job.description}\n" if !job.description.empty?
+      menu
+      @url = BASE_PATH + job.job_url
+    elsif @input == "new"
       Job.clear_all
-      binding.pry
       run_program
     else
       make_selection
     end
   end
 
-  def menu_list
+  def menu
     puts " "
     puts "What do you want to do, #{@user_name}?".green
     puts "Enter a number:\n".green
-    puts "1. Apply"
-    puts "2. Go back"
+    puts "1. Learn more"
+    puts "2. Go back to list"
     puts "3. Exit\n\n"
 
     user_input
     if @input.to_i == 1 #=> utilize #to_i to convert input to integer
-      puts "To apply, right click on the link below then select 'Open URL'.\n\n".green
-      puts @url
-      menu_list
+      puts "Still in progress..."
     elsif @input.to_i == 2
       display_job
+      make_selection
     elsif @input.to_i == 3
       puts "See you later, #{@user_name}! Good luck on your job search!".green
     else
-      menu_list
+      menu
     end
   end
 
   def verify_zipcode
      if /^[0-9]{5}$/.match(@input) #=> check to see that zipcode has 5 digits
       puts "Great! Here's what we found for #{@input}.".green
-      puts "Loading may take a few moments, so in the meantime, please enjoy this cute cat: \n\n\n".green
-      puts "                       /\\_/\\                     ".magenta.blink
-      puts "                      ( o.o )                      ".magenta.blink
-      puts "                       > ^ <                       \n\n\n\n".magenta.blink
      else
       puts "Hmm...that doesn't look right. Enter your 5 digit zipcode:".green
       user_input
@@ -91,27 +92,14 @@ class CommandLineInterface
     end
     @input
   end
-  
-  def make_jobs
-    zipcode
-    user_input
-    puts " "
-    verify_zipcode
-    jobs_array = Scraper.scrape_index_page(@input)
-    Job.create_from_collection(jobs_array)  # creates an array of job objects with 4 attributes
-  end
-  
-  def add_other_attributes_to_job
-    Job.all.each do |job|
-      other_details = Scraper.scrape_job_post(BASE_PATH + job.job_url)
-      job.add_job_attributes(other_details)
-    end
-  end
+
+  # def open_in_browser(job)
+  #   system("open BASE_PATH#{{job.job_url}}")
+  # end
   
   def display_job
-        Job.all.each.with_index(1) do |el, index|
+      Job.all.each.with_index(1) do |el, index|
             puts "#{index}" + ". " + "#{el.title}\n\n"
-        end
-        make_selection
+      end
   end
 end
