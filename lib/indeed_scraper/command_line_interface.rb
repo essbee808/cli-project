@@ -58,7 +58,7 @@ class CommandLineInterface
     end
   end
 
-  def menu_list(job_url)
+  def menu_list(job_url = nil)
     puts " "
     puts "What do you want to do, #{@user_name}?".green
     puts "Select a number below:\n".green
@@ -71,7 +71,7 @@ class CommandLineInterface
 
     if @input.to_i == 1 #=> utilize #to_i to convert input to integer
       system("open", "#{BASE_PATH + @job.job_url}") #=> automatically open job posting via terminal
-      menu_list
+      menu_list(job_url)
     elsif @input.to_i == 2
       display_all_jobs
       make_selection(@input)
@@ -109,5 +109,4 @@ class CommandLineInterface
     puts "                      ( o.o )                       ".magenta.blink
     puts "                       > ^ <                       \n\n".magenta.blink
   end
-
 end
